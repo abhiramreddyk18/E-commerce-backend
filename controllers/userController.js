@@ -20,7 +20,7 @@ exports.loginUser = async (req, res) => {
         if (!user) return res.status(404).json({ message: "User not registered" });
         if (password !== user.password) return res.status(401).json({ message: "Password is incorrect" });
 
-        req.session.user = { _id: user._id };  // Store user ID in session
+        req.session.user = { _id: user._id };  
         res.status(200).json({ message: "Successfully logged in" });
     } catch (error) {
         console.error("Error during login:", error);

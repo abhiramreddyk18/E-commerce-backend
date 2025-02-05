@@ -22,13 +22,31 @@ app.use(cors({
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: mongoConnect.create({ mongoUrl: process.env.MONGO_URI }),
     cookie: { maxAge: 86400000, httpOnly: true, sameSite: 'lax' },
 }));
 
 app.use('/user', userRoutes);
 app.use('/cart', cartRoutes);
+
+app.get('/auth/session', (req, res) => {
+    if (req.session.user) {
+        const now = Date.now();
+        const sessionExpiry = req.session.cookie.expires;
+
+        if (sessionExpiry && now > new Date(sessionExpiry).getTime()) {
+            req.session.destroy();  
+            return res.status(401).json({ loggedIn: false, message: "Session expired" });
+        }
+
+        return res.json({ loggedIn: true, user: req.session.user });
+    }
+
+    res.status(401).json({ loggedIn: false });
+});
+
+
 
 const PORT = process.env.PORT || 1234;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
