@@ -7,6 +7,6 @@ services:
     startCommand: node index.js
     envVars:
       - key: DATABASE_URL
-        value:"mongodb+srv://abhiramreddyk18:abhi18k@cluster0.fdhtw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" 
+        value: "mongodb+srv://abhiramreddyk18:abhi18k@cluster0.fdhtw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" 
       - key: PORT
         value: 3000
