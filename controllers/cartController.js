@@ -3,6 +3,7 @@ const Cart = require('../models/Cart');
 // Add to Cart
 exports.addToCart = async (req, res) => {
     try {
+        console.log('addtoCart triggered');
         const { product_id, name, image, description, quantity, price, total } = req.body;
         let cart = await Cart.findOne({ user_id: req.session.user._id });
 
