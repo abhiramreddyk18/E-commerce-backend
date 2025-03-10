@@ -1,9 +1,10 @@
 {
   "name": "e-com",
   "version": "0.0.0",
+  "main":"index.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node index.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
