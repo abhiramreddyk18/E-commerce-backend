@@ -17,7 +17,7 @@ connectDB();
 app.use(express.json());
 
 app.use(cors({
-    origin: ["http://localhost:4200", process.env.FRONTEND_URL],
+    origin: ["http://localhost:4200", "https://abhiramreddyk18.github.io/E-commerce-frontend"],
     credentials: true,
 }));
 
