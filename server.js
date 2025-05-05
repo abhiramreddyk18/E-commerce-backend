@@ -21,12 +21,14 @@ app.use(cors({
     credentials: true,
 }));
 
+console.log( "url---->"+process.env.FRONTEND_URL);
+
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     store: mongoConnect.create({ mongoUrl: process.env.MONGO_URI, collectionName: 'sessions' }),
-    cookie: { maxAge: 86400000, httpOnly: true, sameSite: 'lax' },
+    cookie: { maxAge: 86400000, httpOnly: true, secure: true, sameSite: 'None' },
 }));
 
 
